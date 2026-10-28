@@ -1,17 +1,15 @@
 # Moonbridge
 
-A Rust Debug Adapter Protocol (DAP) adapter for Lua, based on
-[Local Lua Debugger](https://github.com/tomblind/local-lua-debugger-vscode).
+A Debug Adapter Protocol (DAP) wrapper for Lua, written in Rust, based on [Local Lua Debugger](https://github.com/tomblind/local-lua-debugger-vscode), which is freely available under the MIT licence.
 
-Requires Rust to build or install, and a Lua interpreter to debug your scripts.
-The Lua debugger helper is embedded in the executable.
+## Requirements
+- Rust
+- a lua interpreter of some kind.
 
 ## Install with Cargo
 
-Replace `<repository-url>` with this repository's clone URL:
-
 ```sh
-cargo install --git <repository-url> --locked
+cargo install --git https://github.com/RubyNova/moonbridge --locked
 ```
 
 This installs `moonbridge` into Cargo's bin directory, normally `~/.cargo/bin`.
@@ -33,8 +31,7 @@ cargo install --path . --locked
 
 ## Usage
 
-Configure your editor to launch Moonbridge as a stdio DAP adapter.
-For Neovim with `nvim-dap`:
+Configure your editor to launch Moonbridge as a stdio DAP adapter. For example, if you are using Neovim with `nvim-dap`:
 
 ```lua
 local dap = require('dap')
@@ -50,14 +47,17 @@ dap.configurations.lua = {
     type = 'moonbridge',
     request = 'launch',
     program = '${file}',
-    luaExecutable = 'lua',
+    luaExecutable = 'lua', -- Default; this setting can be omitted.
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
   },
 }
 ```
 
-Open a Lua file, set a breakpoint, and start **Debug Lua** through `nvim-dap`.
-Set `luaExecutable` to use another interpreter, such as `lua5.5` or `luajit`.
-Optional launch settings include `args` (script arguments) and `env`
-(environment variables).
+You can then open a Lua file, set a breakpoint, and start the **Debug Lua** configuration through `nvim-dap`.
+
+By default, Moonbridge runs `lua` from `PATH`. The Lua version depends on your installation and the environment your editor runs in;
+Moonbridge does not select a particular version or install Lua for you. Set `luaExecutable` to another installed command, such as `lua5.5` or `luajit`, or an absolute interpreter path.
+If no `lua` executable is available on `PATH`, you **must** set this option or install Lua.
+
+Optional launch settings include `args` (script arguments) and `env` (environment variables).
