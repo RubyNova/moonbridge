@@ -15,7 +15,7 @@ cargo install moonbridge
 ## Build from source
 
 ```sh
-git clone <repository-url> moonbridge
+git clone https://github.com/RubyNova/moonbridge moonbridge
 cd moonbridge
 cargo build --release
 ```
