@@ -12,9 +12,6 @@ A Debug Adapter Protocol (DAP) wrapper for Lua, written in Rust, based on [Local
 cargo install moonbridge
 ```
 
-This installs `moonbridge` into Cargo's bin directory, normally `~/.cargo/bin`.
-Make sure that directory is on your `PATH`.
-
 ## Build from source
 
 ```sh
