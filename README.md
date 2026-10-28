@@ -9,7 +9,7 @@ A Debug Adapter Protocol (DAP) wrapper for Lua, written in Rust, based on [Local
 ## Install with Cargo
 
 ```sh
-cargo install --git https://github.com/RubyNova/moonbridge --locked
+cargo install moonbridge --locked
 ```
 
 This installs `moonbridge` into Cargo's bin directory, normally `~/.cargo/bin`.
